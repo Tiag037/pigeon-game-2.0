@@ -1,12 +1,15 @@
-import Dice from "./assets/components/Dice";
+import Dice from "./assets/components/Dice/Dice";
 import "./App.css";
 import { Random } from "random-js";
 import { useEffect, useState } from "react";
+import Sentence from "./assets/components/Sentence/Sentence";
 
 const App = () => {
-  const [DiceNumber1, setDiceNumber1] = useState();
-  const [DiceNumber2, setDiceNumber2] = useState();
+  const [diceNumber1, setDiceNumber1] = useState();
+  const [diceNumber2, setDiceNumber2] = useState();
   const [isRolling, setIsRolling] = useState(false);
+  const [message, setMessage] = useState(false)
+
 
   const handleclick = () => {
     setIsRolling(false);
@@ -16,7 +19,6 @@ const App = () => {
     let randomNumber1 = random1.integer(1, 10);
     let randomNumber2 = random2.integer(1, 10);
 
-    console.log("numero aléatoire : " + randomNumber1 + randomNumber2);
     while (
       randomNumber1 < 1 ||
       randomNumber1 > 6 ||
@@ -31,17 +33,24 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (DiceNumber1) {
+    if (diceNumber1) {
       setIsRolling(true);
     }
-  }, [DiceNumber1]);
+    if(diceNumber1 === diceNumber2){
+      setTimeout(() => {
+        setMessage(true)
+      }, 4000);
+    }
+
+  }, [diceNumber1, diceNumber2]);
 
   return (
 
 
     <div onClick={handleclick} className="container">
-      <Dice number={DiceNumber1} rolling={isRolling} />
-      <Dice number={DiceNumber2} rolling={isRolling} />
+      <Dice number={diceNumber1} rolling={isRolling} />
+      {message ? <Sentence number1={diceNumber1} number2={diceNumber2}/> : null} 
+      <Dice number={diceNumber2} rolling={isRolling} />
     </div>
   );
 };
