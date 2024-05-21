@@ -1,18 +1,27 @@
 .message {
-    background-color: #b33951;
+
     color: #e6e3e3;;
     padding: 10px;
     font-weight: bold;
-animation: hidden 4s;
+
+    text-transform: uppercase;
+    width: 50%;
+    text-align: center;
+    background-color:#b33951; 
+    animation: affichage 8s ;
 }
 
-@keyframes hidden {
-    0%{
-        visibility: hidden;
+
+
+@keyframes affichage {
+    0% {
         opacity: 0;
     }
-    100%{
-        visibility: visible;
+    
+    60%{
+        opacity: 0;
+    }
+    100% {
         opacity: 1;
     }
 }

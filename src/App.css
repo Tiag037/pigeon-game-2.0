@@ -8,5 +8,12 @@
   background: #e6e3e3;
   box-shadow: 0 0 20px rgba(0, 0, 0, .1);
   cursor: pointer;
-  gap: 40px
+  /* gap: 30px */
+}
+
+@media screen and (max-width: 380px) {
+  .container {
+    width: 200px;
+    height: 500px;
+  }
 }

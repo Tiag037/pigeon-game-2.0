@@ -6,8 +6,10 @@
     transition: 1s ease;
 }
 
+
+
 .rolling {
-    animation: rolling 4s;
+    animation: rolling 1s;
 }
 
 @keyframes rolling {

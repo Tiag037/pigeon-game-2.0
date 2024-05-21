@@ -8,15 +8,17 @@ const App = () => {
   const [diceNumber1, setDiceNumber1] = useState();
   const [diceNumber2, setDiceNumber2] = useState();
   const [isRolling, setIsRolling] = useState(false);
-  const [message, setMessage] = useState(false)
-
+  const [showMessage, setShowMessage] = useState(false)
 
   const handleclick = () => {
+
+   
     setIsRolling(false);
+    setShowMessage(false)
     const random1 = new Random();
     const random2 = new Random();
 
-    let randomNumber1 = random1.integer(1, 10);
+    let randomNumber1 = random1.integer(1, 15);
     let randomNumber2 = random2.integer(1, 10);
 
     while (
@@ -30,26 +32,24 @@ const App = () => {
     }
     setDiceNumber1(randomNumber1);
     setDiceNumber2(randomNumber2);
+    
   };
 
   useEffect(() => {
+    
     if (diceNumber1) {
       setIsRolling(true);
+      setShowMessage(true)
+      
+      
     }
-    if(diceNumber1 === diceNumber2){
-      setTimeout(() => {
-        setMessage(true)
-      }, 4000);
-    }
-
   }, [diceNumber1, diceNumber2]);
 
   return (
-
-
     <div onClick={handleclick} className="container">
       <Dice number={diceNumber1} rolling={isRolling} />
-      {message ? <Sentence number1={diceNumber1} number2={diceNumber2}/> : null} 
+      <Sentence  number1={diceNumber1} number2={diceNumber2} showMessage={showMessage} />
+
       <Dice number={diceNumber2} rolling={isRolling} />
     </div>
   );
